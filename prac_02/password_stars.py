@@ -1,3 +1,5 @@
+"""Code for getting and printing a password"""
+
 MIN_PASS_LEN = 4
 
 def main():
