@@ -1,3 +1,7 @@
+"""
+CP1404/CP5632 Practical
+"""
+
 def main():
     champions = []
     countries = set()

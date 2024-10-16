@@ -1,3 +1,7 @@
+"""
+CP1404/CP5632 Practical
+"""
+
 COLOURS = {"CELADON": "#ace1af", "CERULEAN": "#007ba7", "CHAMPAGNE": "#f7e7ce",
           "CARMINE": "#960018", "CARDINAL": "#c41e3a", "CANARY": "#ffff99",
           "CAMEL": "#c19a6b", "BYZANTINE": "#bd33a4","BONE": "#e3dac9",
