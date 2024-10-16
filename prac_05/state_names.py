@@ -4,9 +4,14 @@ State names in a dictionary
 File needs reformatting
 """
 
-# TODO: Reformat this file so the dictionary code follows PEP 8 convention
 CODE_TO_NAME = {"QLD": "Queensland", "NSW": "New South Wales", "NT": "Northern Territory", "WA": "Western Australia",
             "ACT": "Australian Capital Territory", "VIC": "Victoria", "TAS": "Tasmania"}
+
+longest_shortcut = max(len(shortcut) for shortcut in list(CODE_TO_NAME.keys()))
+longest_state = max(len(name) for name in list(CODE_TO_NAME.values()))
+for shortcut, state in CODE_TO_NAME.items():
+    print(f"{shortcut:{longest_shortcut}} is {state:{longest_state}}")
+
 print(CODE_TO_NAME)
 
 state_code = input("Enter short state: ").upper()
