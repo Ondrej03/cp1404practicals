@@ -1,7 +1,7 @@
 """
 CP1404/CP5632 Practical - Programming languages exercise
 Estimated time : 20 mins
-Actual time spent : 12:12
+Actual time spent : 25 min
 """
 
 from guitar import Guitar
