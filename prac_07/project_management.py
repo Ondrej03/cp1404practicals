@@ -49,7 +49,8 @@ def main():
                     print("File not found, no new project loaded")
 
             case "S":
-                pass
+                save_to_file(input("Type name of the file to save: "), projects)
+
             case "D":
                 pass
             case "F":
@@ -64,6 +65,17 @@ def main():
                 print("Invalid option")
 
     print(FAREWELL)
+
+
+def save_to_file(filename, projects):
+    print("Your file is saving")
+    out_file = open(filename, "w")
+    for project in projects:
+        out_file.write(
+            f"{project.name}	{project.start_date}	{project.priority}	{project.cost_estimate}"
+            f"	{project.completion_percentage}\n")
+    out_file.close()
+    print("Saved successfully")
 
 
 def load_projects_from_file(projects, file_name, has_header):
