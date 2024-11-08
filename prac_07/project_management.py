@@ -14,7 +14,7 @@ class Project:
         self.completion_percentage = completion_percentage
 
 
-
+INPUT_FILE = "projects.txt"
 
 MENU = """- (L)oad projects  
 - (S)ave projects  
@@ -30,6 +30,21 @@ FAREWELL = "Thank you for using custom-built project management software."
 def main():
 
     print(GREETING)
+
+    projects = []
+
+    in_file = open(INPUT_FILE, "r")
+    # 'Consume' the first line (header) - we don't need its contents
+    in_file.readline()
+    for line in in_file:
+        parts = line.strip().split('	')
+        project = Project(parts[0], parts[1], parts[2], parts[3], parts[4])
+        projects.append(project)
+    print(f"Loaded {len(projects)} projects from {INPUT_FILE}")
+
+
+
+
 
 
 
