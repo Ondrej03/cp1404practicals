@@ -4,6 +4,9 @@ Estimated time : 30 min
 Actual time : 7:24
 """
 
+import datetime
+from operator import attrgetter
+
 
 class Project:
 
@@ -68,7 +71,8 @@ def main():
                 display_projects(projects)
 
             case "F":
-                pass
+                filter_by_date(projects)
+
             case "A":
                 pass
             case "U":
@@ -79,6 +83,15 @@ def main():
                 print("Invalid option")
 
     print(FAREWELL)
+
+
+def filter_by_date(projects):
+    filter_date = datetime.datetime.strptime(input("Show projects that start after date (dd/mm/yy): "),
+                                             "%d/%m/%Y").date()
+    filtered_projects = [project for project in projects if project.start_date >= filter_date]
+    filtered_projects.sort(key=attrgetter('start_date'))
+    for project in filtered_projects:
+        print(project)
 
 
 def display_projects(projects):
@@ -115,7 +128,8 @@ def load_projects_from_file(projects, file_name, has_header):
     num_of_lines = 0
     for line in in_file:
         parts = line.strip().split('	')
-        project = Project(parts[0], parts[1], parts[2], parts[3], parts[4])
+        project = Project(parts[0], datetime.datetime.strptime(parts[1], "%d/%m/%Y").date(), parts[2],
+                          parts[3], parts[4])
         projects.append(project)
         num_of_lines += 1
 
