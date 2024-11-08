@@ -4,6 +4,7 @@ Estimated time : 30 min
 Actual time : 7:24
 """
 
+
 class Project:
 
     def __init__(self, name, start_date, priority, cost_estimate, completion_percentage):
@@ -27,26 +28,26 @@ MENU = """- (L)oad projects
 GREETING = "Welcome to Pythonic Project Management"
 FAREWELL = "Thank you for using custom-built project management software."
 
-def main():
 
+def main():
     print(GREETING)
 
     projects = []
 
-    in_file = open(INPUT_FILE, "r")
-    # 'Consume' the first line (header) - we don't need its contents
-    in_file.readline()
-    for line in in_file:
-        parts = line.strip().split('	')
-        project = Project(parts[0], parts[1], parts[2], parts[3], parts[4])
-        projects.append(project)
-    print(f"Loaded {len(projects)} projects from {INPUT_FILE}")
+    load_projects_from_file(projects, INPUT_FILE, True)
 
     print(MENU)
     while (user_input := input(">>> ")).upper() != "Q":
         match user_input.upper():
+
             case "L":
-                pass
+
+                try:
+                    load_projects_from_file(projects, input("Input file name: "),
+                                            input("Does file include header? (Y/n) ").upper() == "Y")
+                except FileNotFoundError:
+                    print("File not found, no new project loaded")
+
             case "S":
                 pass
             case "D":
@@ -63,6 +64,23 @@ def main():
                 print("Invalid option")
 
     print(FAREWELL)
+
+
+def load_projects_from_file(projects, file_name, has_header):
+    in_file = open(file_name, "r")
+
+    if has_header:
+        # 'Consume' the first line (header) - we don't need its contents
+        in_file.readline()
+
+    num_of_lines = 0
+    for line in in_file:
+        parts = line.strip().split('	')
+        project = Project(parts[0], parts[1], parts[2], parts[3], parts[4])
+        projects.append(project)
+        num_of_lines += 1
+
+    print(f"Loaded {num_of_lines} projects from {file_name}")
 
 
 main()
