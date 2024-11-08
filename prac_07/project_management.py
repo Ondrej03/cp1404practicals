@@ -74,7 +74,8 @@ def main():
                 filter_by_date(projects)
 
             case "A":
-                pass
+                add_new_project(projects)
+
             case "U":
                 pass
             case "Q":
@@ -83,6 +84,19 @@ def main():
                 print("Invalid option")
 
     print(FAREWELL)
+
+
+def add_new_project(projects):
+    print("Let's add a new project")
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yy): ")
+    priority = input("Priority: ")
+    cost = input("Cost estimate: $")
+    complete = input("Percent complete: ")
+    new_project = Project(name, datetime.datetime.strptime(start_date, "%d/%m/%Y").date(),
+                          priority, cost, complete)
+    projects.append(new_project)
+    print(f"New project successfully added : {new_project}")
 
 
 def filter_by_date(projects):
