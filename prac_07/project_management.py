@@ -42,11 +42,25 @@ def main():
         projects.append(project)
     print(f"Loaded {len(projects)} projects from {INPUT_FILE}")
 
-
-
-
-
-
+    print(MENU)
+    while (user_input := input(">>> ")).upper() != "Q":
+        match user_input.upper():
+            case "L":
+                pass
+            case "S":
+                pass
+            case "D":
+                pass
+            case "F":
+                pass
+            case "A":
+                pass
+            case "U":
+                pass
+            case "Q":
+                pass
+            case _:
+                print("Invalid option")
 
     print(FAREWELL)
 
