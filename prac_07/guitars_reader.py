@@ -17,6 +17,8 @@ def main():
 
     in_file.close()
 
+    guitars.sort()
+
     for guitar in guitars:
         print(guitar)
 
