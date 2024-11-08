@@ -14,6 +14,19 @@ class Project:
         self.cost_estimate = cost_estimate
         self.completion_percentage = completion_percentage
 
+    def __lt__(self, other):
+        """primary compared completion status (incomplete come before complete), then compared by priority"""
+        if self.is_complete() != other.is_complete():
+            return not self.is_complete()
+        return self.priority < other.priority
+
+    def __str__(self):
+        return (f"{self.name}, start: {self.start_date}, priority: {self.priority}, estimate: ${self.cost_estimate}, "
+                f"completion: {self.completion_percentage}%")
+
+    def is_complete(self):
+        return self.completion_percentage == "100"
+
 
 INPUT_FILE = "projects.txt"
 
@@ -52,7 +65,8 @@ def main():
                 save_to_file(input("Type name of the file to save: "), projects)
 
             case "D":
-                pass
+                display_projects(projects)
+
             case "F":
                 pass
             case "A":
@@ -65,6 +79,19 @@ def main():
                 print("Invalid option")
 
     print(FAREWELL)
+
+
+def display_projects(projects):
+    projects.sort()
+    index = 0
+    print("Incomplete projects:")
+    while not projects[index].is_complete():
+        print(f"    {projects[index]}")
+        index += 1
+    print("Complete projects:")
+    while index < len(projects):
+        print(f"    {projects[index]}")
+        index += 1
 
 
 def save_to_file(filename, projects):
