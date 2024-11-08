@@ -7,6 +7,8 @@ Actual time : 7:24
 import datetime
 from operator import attrgetter
 
+from prac_04.subject_reader import FILENAME
+
 
 class Project:
 
@@ -77,28 +79,30 @@ def main():
                 add_new_project(projects)
 
             case "U":
-                for index, project in enumerate(projects):
-                    print(f"{index} {project}")
-
-                edited_project = projects[int(input("Project choice: "))]
-
-                print(edited_project)
-
-                new_percentage = input("New percentage: ")
-                edited_project.completion_percentage = new_percentage if new_percentage != ""\
-                    else edited_project.completion_percentage
-
-                new_priority = input("New priority: ")
-                edited_project.priority = new_priority if new_priority != "" \
-                    else edited_project.priority
-
+                update_project(projects)
 
             case _:
                 print("Invalid option")
 
         print(MENU)
 
+    if input("Would you like to save to projects.txt? (Y/n) ").upper() == "Y":
+        save_to_file(INPUT_FILE, projects)
+
     print(FAREWELL)
+
+
+def update_project(projects):
+    for index, project in enumerate(projects):
+        print(f"{index} {project}")
+    edited_project = projects[int(input("Project choice: "))]
+    print(edited_project)
+    new_percentage = input("New percentage: ")
+    edited_project.completion_percentage = new_percentage if new_percentage != "" \
+        else edited_project.completion_percentage
+    new_priority = input("New priority: ")
+    edited_project.priority = new_priority if new_priority != "" \
+        else edited_project.priority
 
 
 def add_new_project(projects):
