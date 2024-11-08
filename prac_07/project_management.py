@@ -77,11 +77,26 @@ def main():
                 add_new_project(projects)
 
             case "U":
-                pass
-            case "Q":
-                pass
+                for index, project in enumerate(projects):
+                    print(f"{index} {project}")
+
+                edited_project = projects[int(input("Project choice: "))]
+
+                print(edited_project)
+
+                new_percentage = input("New percentage: ")
+                edited_project.completion_percentage = new_percentage if new_percentage != ""\
+                    else edited_project.completion_percentage
+
+                new_priority = input("New priority: ")
+                edited_project.priority = new_priority if new_priority != "" \
+                    else edited_project.priority
+
+
             case _:
                 print("Invalid option")
+
+        print(MENU)
 
     print(FAREWELL)
 
