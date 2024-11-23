@@ -1,4 +1,4 @@
-
+"""Test of Silver taxi service class for CP1404"""
 
 from silver_service_taxi import SilverServiceTaxi
 
